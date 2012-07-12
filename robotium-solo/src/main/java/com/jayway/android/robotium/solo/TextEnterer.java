@@ -6,15 +6,13 @@ import android.text.InputType;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-
 /**
  * Contains setEditText() to enter text into text fields.
  * 
  * @author Renas Reda, renas.reda@jayway.com
- *
+ * 
  */
-
-class TextEnterer{
+class TextEnterer {
 
 	private final Instrumentation inst;
 	private final Clicker clicker;
@@ -23,41 +21,41 @@ class TextEnterer{
 	/**
 	 * Constructs this object.
 	 * 
-	 * @param inst the {@code Instrumentation} instance.
-	 * @param clicker the {@code Clicker} instance.
-	 * 
+	 * @param inst
+	 *            the {@code Instrumentation} instance.
+	 * @param clicker
+	 *            the {@code Clicker} instance.
 	 */
-
-	public TextEnterer(Instrumentation inst, ActivityUtils activityUtils, Clicker clicker) {
+	public TextEnterer(Instrumentation inst, ActivityUtils activityUtils,
+			Clicker clicker) {
 		this.inst = inst;
 		this.activityUtils = activityUtils;
 		this.clicker = clicker;
 	}
 
-
 	/**
 	 * Sets an {@code EditText} text
 	 * 
-	 * @param index the index of the {@code EditText} 
-	 * @param text the text that should be set
+	 * @param index
+	 *            the index of the {@code EditText}
+	 * @param text
+	 *            the text that should be set
 	 */
-
 	public void setEditText(final EditText editText, final String text) {
-		if(editText != null){
+		if (editText != null) {
 			final String previousText = editText.getText().toString();
-			if(!editText.isEnabled())
-				Assert.assertTrue("Edit text is not enabled!", false);
+			if (!editText.isEnabled()) {
+				Assert.fail("Edit text is not enabled!");
+			}
 
-			inst.runOnMainSync(new Runnable()
-			{
-				public void run()
-				{
-					editText.setInputType(InputType.TYPE_NULL); 
+			inst.runOnMainSync(new Runnable() {
+				public void run() {
+					editText.setInputType(InputType.TYPE_NULL);
 					editText.performClick();
 					closeSoftKeyboard(editText);
-					if(text.equals(""))
+					if (text.equals("")) {
 						editText.setText(text);
-					else{
+					} else {
 						editText.setText(previousText + text);
 						editText.setCursorVisible(false);
 					}
@@ -65,20 +63,19 @@ class TextEnterer{
 			});
 		}
 	}
-	
-	/**
-	 * Types text in an {@code EditText} 
-	 * 
-	 * @param index the index of the {@code EditText} 
-	 * @param text the text that should be typed
-	 */
 
-	public void typeText(final EditText editText, final String text){
-		if(editText != null){
-			inst.runOnMainSync(new Runnable()
-			{
-				public void run()
-				{
+	/**
+	 * Types text in an {@code EditText}
+	 * 
+	 * @param index
+	 *            the index of the {@code EditText}
+	 * @param text
+	 *            the text that should be typed
+	 */
+	public void typeText(final EditText editText, final String text) {
+		if (editText != null) {
+			inst.runOnMainSync(new Runnable() {
+				public void run() {
 					editText.setInputType(InputType.TYPE_NULL);
 				}
 			});
@@ -91,12 +88,17 @@ class TextEnterer{
 	/**
 	 * Hides the soft keyboard
 	 * 
-	 * @param editText the edit text in focus
+	 * @param editText
+	 *            the edit text in focus
 	 */
 	@SuppressWarnings("static-access")
 	private void closeSoftKeyboard(EditText editText) {
-		InputMethodManager imm = (InputMethodManager)activityUtils.getCurrentActivity(false).
-		getSystemService(activityUtils.getCurrentActivity(false).INPUT_METHOD_SERVICE);
+		InputMethodManager imm = (InputMethodManager) activityUtils
+				.getCurrentActivity(false).
+				// XXX(msama): why not using Context.INPUT_METHOD_SERVICE?
+				getSystemService(
+						activityUtils.getCurrentActivity(false)
+						.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 	}
 }

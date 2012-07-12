@@ -106,21 +106,21 @@ public class Solo {
 	 */
 
 	public Solo(Instrumentation instrumentation, Activity activity) {
-        this.sleeper = new Sleeper();
-        this.activityUtils = new ActivityUtils(instrumentation, activity, sleeper);
-        this.viewFetcher = new ViewFetcher(activityUtils);
-        this.dialogUtils = new DialogUtils(viewFetcher, sleeper);
-        this.scroller = new Scroller(instrumentation, activityUtils, viewFetcher, sleeper);
-        this.searcher = new Searcher(viewFetcher, scroller, sleeper);
-        this.waiter = new Waiter(activityUtils, viewFetcher, searcher,scroller, sleeper);
-        this.setter = new Setter(activityUtils);
-        this.getter = new Getter(activityUtils, viewFetcher, waiter);
-        this.asserter = new Asserter(activityUtils, waiter);
-        this.checker = new Checker(viewFetcher, waiter);
-        this.robotiumUtils = new RobotiumUtils(instrumentation,activityUtils, sleeper);
-        this.clicker = new Clicker(activityUtils, viewFetcher, scroller,robotiumUtils, instrumentation, sleeper, waiter);
-        this.presser = new Presser(clicker, instrumentation, sleeper, waiter);
-        this.textEnterer = new TextEnterer(instrumentation, activityUtils, clicker);
+	    this.sleeper = new Sleeper();
+	    this.activityUtils = new ActivityUtils(instrumentation, activity, sleeper);
+	    this.viewFetcher = new ViewFetcher(activityUtils);
+	    this.dialogUtils = new DialogUtils(viewFetcher, sleeper);
+	    this.scroller = new Scroller(instrumentation, activityUtils, viewFetcher, sleeper);
+	    this.searcher = new Searcher(viewFetcher, scroller, sleeper);
+	    this.waiter = new Waiter(activityUtils, viewFetcher, searcher,scroller, sleeper);
+	    this.setter = new Setter(activityUtils);
+	    this.getter = new Getter(activityUtils, viewFetcher, waiter);
+	    this.asserter = new Asserter(activityUtils, waiter);
+	    this.checker = new Checker(viewFetcher, waiter);
+	    this.robotiumUtils = new RobotiumUtils(instrumentation,activityUtils, sleeper);
+	    this.clicker = new Clicker(activityUtils, viewFetcher, scroller,robotiumUtils, instrumentation, sleeper, waiter);
+	    this.presser = new Presser(clicker, instrumentation, sleeper, waiter);
+	    this.textEnterer = new TextEnterer(instrumentation, activityUtils, clicker);
 	}
 
 	
