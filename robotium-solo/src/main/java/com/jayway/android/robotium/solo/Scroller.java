@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -116,7 +117,7 @@ class Scroller {
 	 * 
 	 */
 
-	private boolean scrollScrollView(final ScrollView view, Direction direction) {
+	private boolean scrollView(final View view, Direction direction) {
 
 		if (view == null) {
 			return false;
@@ -145,10 +146,10 @@ class Scroller {
 	 * 
 	 */
 
-	private void scrollScrollViewAllTheWay(final ScrollView view, Direction direction) {
+	private void scrollViewAllTheWay(final View view, Direction direction) {
 		final int currentScrollX = view.getScrollX();
 		final int targetScrollY = (direction == Direction.UP) ? 
-				0 : view.getMaxScrollAmount();
+				0 : view.getHeight();
 		inst.runOnMainSync(new Runnable() {
 			public void run() {
 				view.scrollTo(currentScrollX, targetScrollY);
@@ -180,7 +181,6 @@ class Scroller {
 	 * @return {@code true} if more scrolling can be done
 	 * 
 	 */
-
 	public boolean scroll(Direction direction, boolean allTheWay) {
 
 		final ArrayList<View> viewList = RobotiumUtils
@@ -196,18 +196,27 @@ class Scroller {
 
 		if (view instanceof AbsListView) {
 			return scrollList((AbsListView) view, direction, allTheWay);
-		}
-
-		if (view instanceof ScrollView) {
+		} else if (view instanceof WebView) {
+			switch (direction) {
+				case DOWN: {
+					((WebView) view).pageDown(allTheWay);
+					break;
+				}
+				case UP: {
+					((WebView) view).pageUp(allTheWay);
+					break;
+				} 
+			}
+			return !allTheWay;
+		} else {
+			// Scroll down a generic view
 			if (allTheWay) {
-				scrollScrollViewAllTheWay((ScrollView) view, direction);
+				scrollViewAllTheWay(view, direction);
 				return false;
 			} else {
-				return scrollScrollView((ScrollView) view, direction);
+				return scrollView(view, direction);
 			}
 		}
-
-		return false;
 	}
 
 	/**

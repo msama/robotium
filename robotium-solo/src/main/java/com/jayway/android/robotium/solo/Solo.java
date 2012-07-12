@@ -1,9 +1,12 @@
 package com.jayway.android.robotium.solo;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
+
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.pm.ActivityInfo;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AbsListView;
@@ -1064,7 +1067,7 @@ public class Solo {
 	 */
 
 	public boolean scrollDown() {
-		waiter.waitForViews(AbsListView.class, ScrollView.class);
+		waiter.waitForViews(AbsListView.class, View.class);
 		return scroller.scroll(Scroller.Direction.DOWN);
 	}
 
@@ -1073,7 +1076,7 @@ public class Solo {
      */
 
     public void scrollToBottom() {
-        waiter.waitForViews(AbsListView.class, ScrollView.class);
+        waiter.waitForViews(AbsListView.class, View.class);
         scroller.scroll(Scroller.Direction.DOWN, true);
     }
 
@@ -1087,7 +1090,7 @@ public class Solo {
 	 */
 	
 	public boolean scrollUp(){
-		waiter.waitForViews(AbsListView.class, ScrollView.class);
+		waiter.waitForViews(AbsListView.class, View.class);
 		return scroller.scroll(Scroller.Direction.UP);
 	}
 
@@ -1096,7 +1099,7 @@ public class Solo {
     */
 
     public void scrollToTop() {
-        waiter.waitForViews(AbsListView.class, ScrollView.class);
+        waiter.waitForViews(AbsListView.class, View.class);
         scroller.scroll(Scroller.Direction.UP, true);
     }
 
