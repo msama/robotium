@@ -277,7 +277,7 @@ class Clicker {
 		}
 		if (textToClick != null) {
 			clickOnScreen(textToClick, longClick, time);
-		} else if (scroll && scroller.scroll(Scroller.DOWN)) {
+		} else if (scroll && scroller.scroll(Scroller.Direction.DOWN)) {
 			clickOnText(regex, longClick, match, scroll, time);
 		} else {
 			int sizeOfUniqueTextViews = uniqueTextViews.size();
@@ -315,7 +315,7 @@ class Clicker {
 		}
 		if (viewToClick != null) {
 			clickOnScreen(viewToClick);
-		} else if (scroller.scroll(Scroller.DOWN)){
+		} else if (scroller.scroll(Scroller.Direction.DOWN)){
 			clickOn(viewClass, nameRegex);
 		}else {
 			for (T view : views) {

@@ -1065,7 +1065,7 @@ public class Solo {
 
 	public boolean scrollDown() {
 		waiter.waitForViews(AbsListView.class, ScrollView.class);
-		return scroller.scroll(Scroller.DOWN);
+		return scroller.scroll(Scroller.Direction.DOWN);
 	}
 
     /**
@@ -1074,7 +1074,7 @@ public class Solo {
 
     public void scrollToBottom() {
         waiter.waitForViews(AbsListView.class, ScrollView.class);
-        scroller.scroll(Scroller.DOWN, true);
+        scroller.scroll(Scroller.Direction.DOWN, true);
     }
 
 
@@ -1088,7 +1088,7 @@ public class Solo {
 	
 	public boolean scrollUp(){
 		waiter.waitForViews(AbsListView.class, ScrollView.class);
-		return scroller.scroll(Scroller.UP);
+		return scroller.scroll(Scroller.Direction.UP);
 	}
 
     /**
@@ -1097,7 +1097,7 @@ public class Solo {
 
     public void scrollToTop() {
         waiter.waitForViews(AbsListView.class, ScrollView.class);
-        scroller.scroll(Scroller.UP, true);
+        scroller.scroll(Scroller.Direction.UP, true);
     }
 
     /**
@@ -1109,7 +1109,7 @@ public class Solo {
 	 */
 	
 	public boolean scrollDownList(int index) {
-		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.DOWN, false);
+		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.Direction.DOWN, false);
 	}
 
     /**
@@ -1121,7 +1121,7 @@ public class Solo {
 	 */
 
     public boolean scrollListToBottom(int index) {
-        return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.DOWN, true);
+        return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.Direction.DOWN, true);
     }
 	
 	/**
@@ -1133,7 +1133,7 @@ public class Solo {
 	 */
 	
 	public boolean scrollUpList(int index) {
-		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.UP, false);
+		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.Direction.UP, false);
 	}
 	
     /**
@@ -1145,7 +1145,7 @@ public class Solo {
    	 */
 
    	public boolean scrollListToTop(int index) {
-   		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.UP, true);
+   		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.Direction.UP, true);
    	}
 
 	/**

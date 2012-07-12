@@ -102,7 +102,7 @@ class Waiter {
 			if(foundMatchingView)
 				return true;
 
-			if(scroll && !scroller.scroll(Scroller.DOWN))
+			if(scroll && !scroller.scroll(Scroller.Direction.DOWN))
 				return false;
 
 			if(!scroll)
@@ -134,7 +134,7 @@ class Waiter {
 				return true;
 
 			if(scroll) 
-				scroller.scroll(Scroller.DOWN);
+				scroller.scroll(Scroller.Direction.DOWN);
 		}
 		return false;
 	}
@@ -159,7 +159,7 @@ class Waiter {
 			if(waitForView(viewClass2, 0, false, false)){
 				return true;
 			}
-			scroller.scroll(Scroller.DOWN);
+			scroller.scroll(Scroller.Direction.DOWN);
 			sleeper.sleep();
 		}
 		return false;
@@ -215,7 +215,7 @@ class Waiter {
 			}
 
 			if(scroll) 
-				scroller.scroll(Scroller.DOWN);
+				scroller.scroll(Scroller.Direction.DOWN);
 		}
 		return false;
 	}

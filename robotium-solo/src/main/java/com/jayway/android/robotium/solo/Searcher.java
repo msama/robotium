@@ -194,7 +194,7 @@ class Searcher {
 					return true;
 				}
 			}
-			if(scroll && !scroller.scroll(Scroller.DOWN)){
+			if(scroll && !scroller.scroll(Scroller.Direction.DOWN)){
 				return logMatchesFoundAndReturnFalse(regex);
 			}
 			if(!scroll){
